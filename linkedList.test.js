@@ -83,6 +83,7 @@ describe('#insertAtIndex', () => {
             const LL = linkedList.fromValues(10, 20, 30, 40)
             LL.insertAtIndex(2, 50)
             const node = LL.getByIndex(2)
+            
             expect(node.value).toBe(50)
             expect(node.next.value).toBe(30)
             expect(LL.length).toBe(5)
@@ -98,5 +99,50 @@ describe('#removeHead', () => {
 
         expect(LL.head.value).toBe(20)
         expect(LL.length).toBe(2)
+    })
+})
+
+describe('#removeAtIndex', () => {
+    describe('with index < 0', () => {
+        test('it does not remove anything', () => {
+            const LL = linkedList.fromValues(10, 20)
+            LL.removeAtIndex(-1)
+
+            expect(LL.length).toBe(2)
+        })
+    })
+
+    describe('with index > list length', () => {
+        test('it does not remove anything', () => {
+            const LL = linkedList.fromValues(10, 20)
+            LL.removeAtIndex(5, 30)
+
+            expect(LL.length).toBe(2)
+        })
+    })
+
+    describe('with index = 0', () => {
+        test('it removes the head', () => {
+            const LL = linkedList.fromValues(10, 20, 30)
+            LL.removeAtIndex(0, 30)
+
+            expect(LL.head.value).toBe(20)
+            expect(LL.head.next.value).toBe(30)
+            expect(LL.length).toBe(2)
+
+        })
+    })
+
+    describe('with index in the middle', () => {
+        test('remove at the given index', () => {
+            const LL = linkedList.fromValues(10, 20, 30, 40)
+            LL.removeAtIndex(2, 50)
+            const node = LL.getByIndex(1)
+
+            expect(node.value).toBe(20)
+            expect(node.next.value).toBe(40)
+            expect(LL.length).toBe(3)
+
+        })
     })
 })
