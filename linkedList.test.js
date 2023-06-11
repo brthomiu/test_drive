@@ -45,48 +45,58 @@ describe('#getByIndex', () => {
             expect(LL.getByIndex(2).value).toBe(30)
         })
     })
+})
 
-    describe('#insertAtIndex', () => {
-        describe('with index < 0', () => {
-            test('it does not insert anything', () => {
-                const LL = linkedList.fromValues(10, 20)
-                LL.insertAtIndex(-1, 30)
+describe('#insertAtIndex', () => {
+    describe('with index < 0', () => {
+        test('it does not insert anything', () => {
+            const LL = linkedList.fromValues(10, 20)
+            LL.insertAtIndex(-1, 30)
 
-                expect(LL.length).toBe(2)
-            })
+            expect(LL.length).toBe(2)
         })
+    })
 
-        describe('with index > list length', () => {
-            test('it does not insert anything', () => {
-                const LL = linkedList.fromValues(10, 20)
-                LL.insertAtIndex(5, 30)
+    describe('with index > list length', () => {
+        test('it does not insert anything', () => {
+            const LL = linkedList.fromValues(10, 20)
+            LL.insertAtIndex(5, 30)
 
-                expect(LL.length).toBe(2)
-            })
+            expect(LL.length).toBe(2)
         })
+    })
 
-        describe('with index = 0', () => {
-            test('it inserts at the head', () => {
-                const LL = linkedList.fromValues(10, 20)
-                LL.insertAtIndex(0, 30)
+    describe('with index = 0', () => {
+        test('it inserts at the head', () => {
+            const LL = linkedList.fromValues(10, 20)
+            LL.insertAtIndex(0, 30)
 
-                expect(LL.head.value).toBe(30)
-                expect(LL.head.next.value).toBe(10)
-                expect(LL.length).toBe(3)
+            expect(LL.head.value).toBe(30)
+            expect(LL.head.next.value).toBe(10)
+            expect(LL.length).toBe(3)
 
-            })
         })
+    })
 
-        describe('with index in the middle', () => {
-            test('insert at the given index', () => {
-                const LL = linkedList.fromValues(10, 20, 30, 40)
-                LL.insertAtIndex(2, 50)
-                const node = LL.getByIndex(2)
-                expect(node.value).toBe(50)
-                expect(node.next.value).toBe(30)
-                expect(LL.length).toBe(5)
+    describe('with index in the middle', () => {
+        test('insert at the given index', () => {
+            const LL = linkedList.fromValues(10, 20, 30, 40)
+            LL.insertAtIndex(2, 50)
+            const node = LL.getByIndex(2)
+            expect(node.value).toBe(50)
+            expect(node.next.value).toBe(30)
+            expect(LL.length).toBe(5)
 
-            })
         })
+    })
+})
+
+describe('#removeHead', () => {
+    test('removes the head', () => {
+        const LL = linkedList.fromValues(10, 20, 30)
+        LL.removeHead()
+
+        expect(LL.head.value).toBe(20)
+        expect(LL.length).toBe(2)
     })
 })
